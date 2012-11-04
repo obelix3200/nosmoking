@@ -1,0 +1,65 @@
+
+<head>
+<title>No Smoking !</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./jquery.mobile-1.0.1.min.css" />
+<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+<script src="./jquery.mobile-1.0.1.min.js"></script>
+<!-- <script src="./jquery-ui.min.js"> -->
+<script>
+function recup()
+{
+document.getElementById('setup').style.display = 'none';
+$.getJSON("http://88.191.131.104/nosmoking/count.php", function (json) {
+	$('#token').html(json.token) 
+	$('#ecocig').html(json.ecocig)
+	$('#ecoeuro').html(json.ecoeuro + ' &#8364;')
+	$('#nbjourss').html(json.nbjourss)
+});
+}
+
+function setup()
+{
+document.getElementById('setup').style.display = 'block';
+document.getElementById('compteur').style.display = 'none';
+}
+function setuphide()
+{
+document.getElementById('compteur').style.display = 'block';
+document.getElementById('setup').style.display = 'none';
+}
+
+</script>
+
+</head>
+<body onLoad="recup()"><center>
+
+
+<form name="form">
+<h1>No smoking !</h1></center>
+<hr>
+<h3>Identifiant unique : <span id="token"></span><br><br>
+Cigarettes &eacute;conomis&eacute;es : <span id="ecocig"></span><br><br>
+&Eacute;conomie : <span id="ecoeuro"></span><br><br>
+Nombre de jours : <span id="nbjourss"></span><br>
+</h3>
+
+
+</form>
+
+<div data-role="footer" data-position="fixed" data-fullscreen="true">		
+	<div data-role="navbar">
+		<ul>
+			<li><a onClick="setuphide()" data-role="button">Compteur</a></li>
+			<li><a onClick="setup()" data-role="button">Setup</a></li>
+		</ul>
+	</div>
+</div>
+
+
+</body>
+
+
+
+</html>
+
